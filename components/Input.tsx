@@ -60,7 +60,7 @@ export default function Input({
         }
 
         .description {
-          font-size: 0.8rem;
+          font-size: 0.85em;
           opacity: 0.75;
           display: block;
         }
