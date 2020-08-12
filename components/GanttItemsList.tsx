@@ -79,7 +79,7 @@ export default function GanttItemsList() {
   ) : null
 }
 
-function ItemBadge({ id }) {
+function ItemBadge({ id }: { id: string }) {
   return (
     <>
       <span className="badge" />
