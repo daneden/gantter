@@ -19,7 +19,6 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
     <style jsx>{`
       .layout {
         display: grid;
-        grid-gap: 1rem;
         grid-template-columns: 300px 1fr;
         width: 100%;
         height: 100%;
