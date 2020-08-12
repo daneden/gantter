@@ -58,7 +58,7 @@ export default function GanttItemForm() {
       <form onSubmit={preventDefault}>
         <datalist id="itemNames">
           {itemNames.map((itemName) => (
-            <option value={String(itemName)} />
+            <option key={itemName} value={String(itemName)} />
           ))}
         </datalist>
         <Input

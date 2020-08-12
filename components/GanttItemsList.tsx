@@ -16,7 +16,7 @@ export default function GanttItemsList() {
     <>
       <ul>
         {items.map((item, index) => (
-          <li>
+          <li key={item[0]}>
             <div>
               <h3>{item[1]}</h3>
               <small>Starts {item[2]?.toLocaleDateString()}</small>

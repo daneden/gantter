@@ -17,18 +17,17 @@ const IndexPage = () => {
         </div>
       </Layout>
       <style jsx>{`
-        .form,
-        .chart {
-          padding: 1.4rem;
-        }
-
         .form {
           display: grid;
           grid-gap: 1.4rem;
+          padding: 1.4rem;
+          background-color: rgba(128, 128, 128, 0.05);
+          min-height: 100%;
+          align-items: start;
+          grid-auto-rows: min-content;
         }
 
         .chart {
-          background-color: rgba(128, 128, 128, 0.1);
           min-height: 100%;
           display: grid;
           place-items: center;
