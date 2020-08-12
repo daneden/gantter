@@ -4,7 +4,7 @@ import ganttReducer, { GanttReducerAction } from "../reducers/ganttReducer"
 import { DEFAULT_GANTT_ITEMS } from "../utils/constants"
 
 interface GanttItemsContextType {
-  items: Array<GanttItem>
+  items: GanttItem[]
   dispatch?: React.Dispatch<GanttReducerAction> | null
 }
 

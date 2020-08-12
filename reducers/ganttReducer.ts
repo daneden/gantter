@@ -2,7 +2,7 @@ import { GanttItem } from "../interfaces"
 
 interface AddGanttItemAction {
   type: "add"
-  payload: GanttItem
+  payload: Omit<GanttItem, "id">
 }
 
 interface RemoveGanttItemAction {
@@ -16,10 +16,17 @@ export default function reducer(
   state: Array<GanttItem>,
   action: GanttReducerAction
 ) {
-  console.log(action)
   switch (action.type) {
     case "add":
-      return [...state, action.payload]
+      return [
+        ...state,
+        {
+          ...action.payload,
+          id: btoa(
+            JSON.stringify(action.payload.name + action.payload.startDate)
+          ),
+        },
+      ]
     case "remove":
       return state.filter((_, i) => i !== action.index)
   }

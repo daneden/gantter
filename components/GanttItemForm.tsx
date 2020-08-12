@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { GanttItem } from "../interfaces"
-import {
-  camelize,
-  dateFormatter,
-  daysToMilliseconds,
-  handler,
-  preventDefault,
-} from "../utils/functions"
+import { handler, preventDefault } from "../utils/functions"
 import Button from "./Button"
 import { useGanttItems } from "./GanttItemsContext"
 import Input from "./Input"
@@ -14,38 +8,27 @@ import Input from "./Input"
 export default function GanttItemForm() {
   const { items, dispatch } = useGanttItems()
   const [name, setName] = useState("")
-  const [startDate, setStartDate] = useState(dateFormatter(new Date()))
-  const [duration, setDuration] = useState("1")
+  const [startDate, setStartDate] = useState("")
+  const [endDate, setEndDate] = useState("")
   const [dependencies, setDependencies] = useState("")
-  const [percentComplete, setPercentComplete] = useState("100")
-  const [transformed, setTransformed] = useState<GanttItem>([
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ])
+  const [transformed, setTransformed] = useState<GanttItem>()
 
   const itemNames = items
-    .map((item) => item[1])
+    .map((item) => item.name)
     .filter((itemName) => itemName !== null)
 
   useEffect(() => {
-    setTransformed([
-      camelize(name),
+    setTransformed({
       name,
-      new Date(startDate),
-      null,
-      daysToMilliseconds(Number(duration)),
-      Number(percentComplete),
-      dependencies.split(/, ?/).map(camelize).join(","),
-    ])
-  }, [name, duration, startDate, percentComplete, dependencies])
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+      dependencies: dependencies.split(/, ?/),
+      id: name + startDate,
+    })
+  }, [name, startDate, endDate, dependencies])
 
   function addItem() {
-    if (dispatch && name.length && startDate.length) {
+    if (dispatch && name.length && startDate && transformed) {
       dispatch({
         type: "add",
         payload: transformed,
@@ -69,26 +52,16 @@ export default function GanttItemForm() {
           required={true}
         />
         <Input
-          description="YYYY/MM/DD"
           label="Start Date"
           value={startDate}
           onChange={handler(setStartDate)}
-          placeholder="2020/08/31"
+          type="date"
         />
         <Input
-          label="Duration (in days)"
-          value={duration}
-          onChange={handler(setDuration)}
-          type="number"
-        />
-        <Input
-          label="Percent Complete"
-          value={percentComplete}
-          onChange={handler(setPercentComplete)}
-          placeholder="Percent complete"
-          type="number"
-          min={0}
-          max={100}
+          label="End Date"
+          value={endDate}
+          onChange={handler(setEndDate)}
+          type="date"
         />
         <Input
           label="Dependencies"

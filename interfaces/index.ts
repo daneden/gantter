@@ -4,28 +4,10 @@
 //
 // import User from 'path/to/interfaces';
 
-export type GanttItem = [
-  /** Item ID */
-  string | null,
-  /** Item Name */
-  string | null,
-  /** Start Date */
-  Date | null,
-  /** End Date */
-  Date | null,
-  /** Duration */
-  number | null,
-  /** Percent Complete */
-  number | null,
-  /** Dependencies */
-  string | null
-]
-
-export interface GanttColumn {
-  type: "string" | "number" | "date"
-  label: string
+export interface GanttItem {
+  id: string
+  name: string
+  startDate: Date
+  endDate: Date
+  dependencies: string[]
 }
-
-export type GanttColumns = Array<GanttColumn>
-
-export type GanttChartData = Array<GanttColumn | GanttItem>

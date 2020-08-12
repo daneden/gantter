@@ -22,18 +22,46 @@ export function preventDefault(event: React.BaseSyntheticEvent) {
   event.preventDefault()
 }
 
-export function dateFormatter(date: Date) {
-  const dateTimeFormat = new Intl.DateTimeFormat("en", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-  })
-  const [
-    { value: month },
-    ,
-    { value: day },
-    ,
-    { value: year },
-  ] = dateTimeFormat.formatToParts(date)
-  return `${year}/${month}/${day}`
+export function dateFormatter(date: Date, shorthand: boolean = false) {
+  if (shorthand) {
+    return date.toLocaleDateString(undefined, {
+      day: "numeric",
+      month: "short",
+    })
+  } else {
+    const dateTimeFormat = new Intl.DateTimeFormat("en", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    })
+    const [
+      { value: month },
+      ,
+      { value: day },
+      ,
+      { value: year },
+    ] = dateTimeFormat.formatToParts(date)
+    return `${year}/${month}/${day}`
+  }
+}
+
+export function normalise(min: number, max: number, val: number) {
+  return (val - min) / (max - min)
+}
+
+export function lerp(start: number, end: number, t: number) {
+  return start * (1 - t) + end * t
+}
+
+export function stringToColour(str: string) {
+  var hash = 0
+  for (var i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash)
+  }
+  var colour = "#"
+  for (var i = 0; i < 3; i++) {
+    var value = (hash >> (i * 8)) & 0xff
+    colour += ("00" + value.toString(16)).substr(-2)
+  }
+  return colour
 }

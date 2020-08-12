@@ -2,7 +2,7 @@ interface Props {
   value: string | number
   onChange: (arg: any) => any
   label: string
-  type?: "text" | "number" | "password"
+  type?: "text" | "number" | "password" | "date"
   placeholder?: string
   min?: number
   max?: number
@@ -41,6 +41,7 @@ export default function Input({
       <style jsx>{`
         .label {
           display: block;
+          margin-bottom: 0.25em;
         }
 
         input {
@@ -50,8 +51,10 @@ export default function Input({
           font: inherit;
           border-radius: 0.25em;
           padding: 0.25em 0.5em;
-          border: 1px solid rgba(128, 128, 128, 0.3);
+          border: 1px solid var(--quarternary-wash);
           margin-bottom: 0.05em;
+          background-color: rgba(255, 255, 255, 0.1);
+          color: inherit;
         }
 
         label {
