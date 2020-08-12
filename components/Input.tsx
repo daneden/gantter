@@ -8,6 +8,7 @@ interface Props {
   max?: number
   description?: string
   required?: boolean
+  list?: string
 }
 export default function Input({
   value = "",
@@ -19,12 +20,14 @@ export default function Input({
   min,
   max,
   required = false,
+  list,
 }: Props) {
   return (
     <>
       <label>
         <span className="label">{label}</span>
         <input
+          list={list}
           type={type}
           onChange={onChange}
           value={value}

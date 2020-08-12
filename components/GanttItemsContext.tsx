@@ -1,6 +1,7 @@
 import React, { createContext, ReactNode, useContext, useReducer } from "react"
 import { GanttItem } from "../interfaces"
 import ganttReducer, { GanttReducerAction } from "../reducers/ganttReducer"
+import { DEFAULT_GANTT_ITEMS } from "../utils/constants"
 
 interface GanttItemsContextType {
   items: Array<GanttItem>
@@ -8,12 +9,12 @@ interface GanttItemsContextType {
 }
 
 const GanttItemsContext = createContext<GanttItemsContextType>({
-  items: [],
+  items: DEFAULT_GANTT_ITEMS,
   dispatch: null,
 })
 
 const GanttItemsProvider = ({ children }: { children: ReactNode }) => {
-  const [items, dispatch] = useReducer(ganttReducer, [])
+  const [items, dispatch] = useReducer(ganttReducer, DEFAULT_GANTT_ITEMS)
 
   return (
     <GanttItemsContext.Provider value={{ items, dispatch }}>

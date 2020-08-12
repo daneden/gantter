@@ -12,7 +12,7 @@ import { useGanttItems } from "./GanttItemsContext"
 import Input from "./Input"
 
 export default function GanttItemForm() {
-  const { dispatch } = useGanttItems()
+  const { items, dispatch } = useGanttItems()
   const [name, setName] = useState("")
   const [startDate, setStartDate] = useState(dateFormatter(new Date()))
   const [duration, setDuration] = useState("1")
@@ -27,6 +27,10 @@ export default function GanttItemForm() {
     null,
     null,
   ])
+
+  const itemNames = items
+    .map((item) => item[1])
+    .filter((itemName) => itemName !== null)
 
   useEffect(() => {
     setTransformed([
@@ -52,6 +56,11 @@ export default function GanttItemForm() {
   return (
     <>
       <form onSubmit={preventDefault}>
+        <datalist id="itemNames">
+          {itemNames.map((itemName) => (
+            <option value={String(itemName)} />
+          ))}
+        </datalist>
         <Input
           label="Item Name"
           value={name}
@@ -86,11 +95,13 @@ export default function GanttItemForm() {
           description="Enter the names of other items to make this one depend upon them"
           value={dependencies}
           onChange={handler(setDependencies)}
+          list="itemNames"
         />
         <Button onClick={addItem} label="Add Item" />
       </form>
       <style jsx>{`
         form {
+          font-size: 0.8em;
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
           grid-gap: 1em;

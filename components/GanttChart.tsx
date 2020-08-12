@@ -17,5 +17,15 @@ export default function GanttChart() {
       width={"100%"}
       loader={<div>Loading chart</div>}
     />
-  ) : null
+  ) : (
+    <>
+      <p>No items added yet</p>
+      <style jsx>{`
+        p {
+          place-self: center;
+          opacity: 0.5;
+        }
+      `}</style>
+    </>
+  )
 }

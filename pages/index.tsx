@@ -26,6 +26,13 @@ const IndexPage = () => {
           display: grid;
           grid-gap: 1.4rem;
         }
+
+        .chart {
+          background-color: rgba(128, 128, 128, 0.1);
+          min-height: 100%;
+          display: grid;
+          place-items: center;
+        }
       `}</style>
       <style global jsx>
         {`
