@@ -28,4 +28,4 @@ export interface GanttColumn {
 
 export type GanttColumns = Array<GanttColumn>
 
-export type GanttChartData = Array<GanttColumn | GanttItem>
+export type GanttChartData = [GanttColumn, ...GanttItem[]]
