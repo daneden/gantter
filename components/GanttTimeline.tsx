@@ -1,5 +1,8 @@
 import { dateFormatter, daysToMilliseconds } from "../utils/functions"
 
+const MAX_SUBDIVISIONS = 9
+const MIN_SUBDIVISIONS = 3
+
 export default function GanttTimeline({
   start,
   end,
@@ -15,9 +18,17 @@ export default function GanttTimeline({
   const diffInDays = Math.floor((end - start) / daysToMilliseconds(1))
   const [, ...subdivisions] = Array(diffInDays)
     .fill(0)
-    .map((_, index) => {
-      return new Date(start + daysToMilliseconds(index))
+    .map((_, index) => index)
+    .map((_, index, arr) => {
+      if (diffInDays > MAX_SUBDIVISIONS) {
+        const isWhole =
+          index / MAX_SUBDIVISIONS - Math.floor(index / MAX_SUBDIVISIONS) === 0
+        return isWhole ? new Date(start + daysToMilliseconds(index)) : null
+      } else {
+        return new Date(start + daysToMilliseconds(index))
+      }
     })
+    .filter((el) => el !== null)
 
   return (
     <>

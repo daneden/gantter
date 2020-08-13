@@ -31,8 +31,8 @@ export function dateFormatter(date: Date, shorthand: boolean = false) {
   } else {
     const dateTimeFormat = new Intl.DateTimeFormat("en", {
       year: "numeric",
-      month: "numeric",
-      day: "numeric",
+      month: "2-digit",
+      day: "2-digit",
     })
     const [
       { value: month },
@@ -41,7 +41,7 @@ export function dateFormatter(date: Date, shorthand: boolean = false) {
       ,
       { value: year },
     ] = dateTimeFormat.formatToParts(date)
-    return `${year}/${month}/${day}`
+    return `${year}-${month}-${day}`
   }
 }
 
@@ -64,4 +64,15 @@ export function stringToColour(str: string) {
     colour += ("00" + value.toString(16)).substr(-2)
   }
   return colour
+}
+
+export function wrap(
+  x: number,
+  range: [number, number],
+  includeMax: boolean = false
+) {
+  var max = range[1],
+    min = range[0],
+    d = max - min
+  return x === max && includeMax ? x : ((((x - min) % d) + d) % d) + min
 }

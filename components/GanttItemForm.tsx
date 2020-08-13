@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react"
 import { GanttItem } from "../interfaces"
-import { handler, preventDefault } from "../utils/functions"
+import {
+  dateFormatter,
+  daysToMilliseconds,
+  handler,
+  preventDefault,
+} from "../utils/functions"
 import Button from "./Button"
 import { useGanttItems } from "./GanttItemsContext"
 import Input from "./Input"
@@ -8,8 +13,10 @@ import Input from "./Input"
 export default function GanttItemForm() {
   const { items, dispatch } = useGanttItems()
   const [name, setName] = useState("")
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
+  const [startDate, setStartDate] = useState(dateFormatter(new Date()))
+  const [endDate, setEndDate] = useState(
+    dateFormatter(new Date(Number(new Date()) + daysToMilliseconds(3)))
+  )
   const [dependencies, setDependencies] = useState("")
   const [transformed, setTransformed] = useState<GanttItem>()
 
