@@ -53,8 +53,14 @@ export default function Input({
           padding: 0.25em 0.5em;
           border: 1px solid var(--quarternary-wash);
           margin-bottom: 0.05em;
-          background-color: rgba(255, 255, 255, 0.1);
+          background-color: var(--wash-color);
           color: inherit;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          input {
+            background-color: var(--edge-highlight);
+          }
         }
 
         label {

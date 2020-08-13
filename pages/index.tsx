@@ -7,7 +7,7 @@ import Layout from "../components/Layout"
 const IndexPage = () => {
   return (
     <GanttItemsProvider>
-      <Layout title="Home">
+      <Layout>
         <div className="form">
           <GanttItemForm />
           <GanttItemsList />

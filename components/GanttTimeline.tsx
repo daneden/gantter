@@ -19,7 +19,7 @@ export default function GanttTimeline({
   const [, ...subdivisions] = Array(diffInDays)
     .fill(0)
     .map((_, index) => index)
-    .map((_, index, arr) => {
+    .map((_, index) => {
       if (diffInDays > MAX_SUBDIVISIONS) {
         const isWhole =
           index / MAX_SUBDIVISIONS - Math.floor(index / MAX_SUBDIVISIONS) === 0
@@ -38,7 +38,7 @@ export default function GanttTimeline({
         </span>
         {subdivisions.map((tick) => (
           <span className="tick">
-            <span className="label">{dateFormatter(tick, true)}</span>
+            <span className="label">{dateFormatter(tick as Date, true)}</span>
           </span>
         ))}
         <span className="tick">
