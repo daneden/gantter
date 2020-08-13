@@ -19,7 +19,7 @@ function processItems(items: GanttItem[]) {
   }
 }
 
-export default function GanttChartNext() {
+export default function GanttChart() {
   const { items } = useGanttItems()
   const { dateRange } = processItems(items)
 
@@ -42,9 +42,9 @@ export default function GanttChartNext() {
       </div>
       <style jsx>{`
         .container {
-          width: 100%;
-          height: 100%;
-          overflow: scroll;
+          height: 100vh;
+          overflow-x: hidden;
+          overflow-y: scroll;
           padding: 1.4em 2.8em 1.4em 1.4em;
         }
 

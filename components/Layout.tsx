@@ -20,8 +20,6 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
       .layout {
         display: grid;
         grid-template-columns: 300px 1fr;
-        width: 100%;
-        height: 100%;
         min-height: 100vh;
         align-items: start;
       }

@@ -1,4 +1,4 @@
-import GanttChartNext from "../components/GanttChartNext"
+import GanttChart from "../components/GanttChart"
 import GanttItemForm from "../components/GanttItemForm"
 import GanttItemsProvider from "../components/GanttItemsContext"
 import GanttItemsList from "../components/GanttItemsList"
@@ -13,7 +13,7 @@ const IndexPage = () => {
           <GanttItemsList />
         </div>
         <div className="chart">
-          <GanttChartNext />
+          <GanttChart />
         </div>
       </Layout>
       <style jsx>{`
@@ -22,15 +22,16 @@ const IndexPage = () => {
           grid-gap: 1.4rem;
           padding: 1.4rem;
           background-color: var(--secondary-wash);
-          min-height: 100%;
+          height: 100vh;
           align-items: start;
           grid-auto-rows: min-content;
+          overflow-y: scroll;
         }
 
         .chart {
           min-height: 100%;
           display: grid;
-          place-items: center;
+          place-items: center stretch;
         }
       `}</style>
       <style global jsx>
@@ -68,6 +69,7 @@ const IndexPage = () => {
 
           *:focus {
             box-shadow: 0 0 0 2px royalblue;
+            border-color: transparent !important;
             outline: none;
           }
         `}
