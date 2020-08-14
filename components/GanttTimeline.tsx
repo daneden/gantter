@@ -1,7 +1,6 @@
 import { dateFormatter, daysToMilliseconds } from "../utils/functions"
 
 const MAX_SUBDIVISIONS = 9
-const MIN_SUBDIVISIONS = 3
 
 export default function GanttTimeline({
   start,

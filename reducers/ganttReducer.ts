@@ -26,7 +26,9 @@ export default function reducer(
             JSON.stringify(action.payload.name + action.payload.startDate)
           ),
         },
-      ]
+      ].sort((a, b) => {
+        return Number(a.startDate) - Number(b.startDate)
+      })
     case "remove":
       return state.filter((_, i) => i !== action.index)
   }

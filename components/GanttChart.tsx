@@ -23,15 +23,11 @@ export default function GanttChart() {
   const { items } = useGanttItems()
   const { dateRange } = processItems(items)
 
-  const sortedItems = items.sort((a, b) => {
-    return Number(a.startDate) - Number(b.startDate)
-  })
-
   return (
     <DateRangeContext.Provider value={dateRange}>
       <div className="container" role="presentation">
         <ul>
-          {sortedItems.map((item, index) => (
+          {items.map((item, index) => (
             <GanttChartRow
               key={item.id}
               data={item}
